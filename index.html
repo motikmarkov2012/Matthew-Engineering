@@ -3,428 +3,841 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ffffff">
-  <meta name="description" content="Forma3D — engineering, CAD design and 3D projects.">
-  <title>Forma3D — Engineering Portfolio</title>
+
+  <title>Matthew — Engineering & Design</title>
+  <meta name="description" content="Engineering projects, CAD design, mechanical animations and 3D printing by Matthew.">
 
   <style>
     :root {
-      --blue: #2563a6;
-      --black: #171717;
-      --gray: #737373;
+      --bg: #ffffff;
+      --text: #151515;
+      --muted: #777777;
       --line: #e8e8e8;
-      --surface: #f6f7f9;
+      --soft: #f5f5f3;
+      --blue: #315fce;
+      --page: 1180px;
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
+    }
 
     body {
       margin: 0;
-      background: white;
-      color: var(--black);
+      background: var(--bg);
+      color: var(--text);
       font-family: Arial, Helvetica, sans-serif;
+      -webkit-font-smoothing: antialiased;
     }
 
     a { color: inherit; text-decoration: none; }
 
-    .container {
-      width: min(1120px, calc(100% - 40px));
-      margin: auto;
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    .wrap {
+      width: min(var(--page), calc(100% - 64px));
+      margin-inline: auto;
     }
 
-    header {
-      height: 76px;
+    /* NAVIGATION */
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      height: 72px;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      height: 100%;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
     }
 
-    .logo {
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
+    .brand {
+      font-size: 14px;
+      font-weight: 750;
+      letter-spacing: -.3px;
     }
 
-    .logo span { color: var(--blue); }
-
-    nav {
-      display: flex;
-      gap: 25px;
-      font-size: 13px;
-    }
-
-    nav a:hover { color: var(--blue); }
-
-    .hero { padding: 90px 0 75px; }
-
-    .eyebrow {
-      color: var(--gray);
-      font-size: 11px;
-      font-weight: 700;
+    .brand span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 400;
       letter-spacing: 2px;
       text-transform: uppercase;
     }
 
-    .accent {
-      width: 55px;
-      height: 4px;
-      margin: 20px 0 27px;
-      border-radius: 4px;
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 12px;
+      color: #555;
+    }
+
+    .nav-links a:hover { color: var(--blue); }
+
+    .nav-contact {
+      padding: 10px 15px;
+      border: 1px solid #dcdcdc;
+      color: var(--text) !important;
+      transition: background .2s;
+    }
+
+    .nav-contact:hover {
+      background: var(--soft);
+    }
+
+    /* HERO */
+
+    .hero {
+      padding-top: 105px;
+      padding-bottom: 92px;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.7px;
+      text-transform: uppercase;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      flex: 0 0 6px;
+      border-radius: 50%;
       background: var(--blue);
     }
 
     h1 {
       max-width: 850px;
-      margin: 0;
-      font-size: clamp(45px, 8vw, 84px);
-      letter-spacing: -4px;
-      line-height: 1.04;
+      margin: 28px 0 22px;
+      font-size: clamp(52px, 8.5vw, 104px);
+      line-height: .98;
+      font-weight: 600;
+      letter-spacing: -.075em;
     }
 
-    h1 span { color: var(--blue); }
+    h1 span { color: #929292; }
 
-    .intro {
-      max-width: 590px;
-      margin-top: 25px;
-      color: #666;
-      font-size: 16px;
-      line-height: 1.8;
-    }
-
-    .actions {
+    .hero-bottom {
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 30px;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 14px 19px;
-      border: 1px solid var(--black);
-      font-size: 13px;
-      font-weight: 700;
-      transition: .2s;
-    }
-
-    .button.primary {
-      color: white;
-      background: var(--black);
-    }
-
-    .button:hover {
-      color: white;
-      background: var(--blue);
-      border-color: var(--blue);
-    }
-
-    .projects { padding: 45px 0 85px; }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
       align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-top: 34px;
+    }
+
+    .hero-description {
+      max-width: 430px;
+      margin: 0;
+      color: #666;
+      font-size: 15px;
+      line-height: 1.85;
+    }
+
+    .primary-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+      flex-shrink: 0;
+      padding: 15px 18px;
+      background: var(--text);
+      color: white;
+      font-size: 12px;
+      transition: background .2s;
+    }
+
+    .primary-link:hover { background: var(--blue); }
+
+    .primary-link span {
+      font-size: 17px;
+      line-height: 1;
+    }
+
+    /* SECTION HEADERS */
+
+    .section {
+      padding: 30px 0 100px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
       gap: 20px;
-      margin-bottom: 30px;
+      padding-bottom: 23px;
+      margin-bottom: 26px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-index {
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 1.5px;
     }
 
     h2 {
       margin: 0;
-      font-size: clamp(27px, 4vw, 36px);
-      letter-spacing: -1px;
+      font-size: clamp(30px, 4vw, 45px);
+      font-weight: 550;
+      letter-spacing: -.055em;
     }
 
-    .note {
-      color: var(--gray);
-      font-size: 12px;
+    .section-caption {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.7;
+      text-align: right;
     }
 
-    .grid {
+    /* PROJECT GRID */
+
+    .projects {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 22px;
+      column-gap: 24px;
+      row-gap: 50px;
     }
 
-    .card {
-      min-width: 0;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      background: white;
-    }
+    .project { min-width: 0; }
 
-    .media {
+    .project-media {
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      aspect-ratio: 4 / 3;
-      background: var(--surface);
+      aspect-ratio: 1.35 / 1;
+      background: var(--soft);
     }
 
-    .media video,
-    .media img {
+    .project-media video,
+    .project-media img {
       display: block;
       width: 100%;
       height: 100%;
       object-fit: contain;
     }
 
-    .media img { object-fit: cover; }
+    .project-media.photo img {
+      object-fit: cover;
+    }
 
-    .tag {
+    .project-media video {
+      background: var(--soft);
+    }
+
+    .media-number {
       position: absolute;
-      z-index: 1;
-      top: 13px;
-      left: 13px;
-      padding: 8px 10px;
-      background: rgba(255,255,255,.94);
-      font-size: 10px;
-      font-weight: 700;
+      z-index: 2;
+      top: 14px;
+      left: 14px;
+      padding: 7px 9px;
+      background: rgba(255,255,255,.93);
+      color: #555;
+      font-size: 9px;
       letter-spacing: 1px;
       pointer-events: none;
     }
 
-    .card-body { padding: 21px; }
+    .media-state {
+      position: absolute;
+      right: 13px;
+      bottom: 13px;
+      z-index: 2;
+      padding: 7px 9px;
+      background: rgba(255,255,255,.92);
+      color: #555;
+      font-size: 9px;
+      pointer-events: none;
+    }
 
-    .number {
-      color: var(--blue);
-      font-size: 11px;
-      font-weight: 700;
+    .project-info {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 15px;
+      padding-top: 18px;
+    }
+
+    .project-title {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 550;
+      letter-spacing: -.6px;
+    }
+
+    .project-description {
+      max-width: 380px;
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .project-type {
+      flex-shrink: 0;
+      padding-top: 5px;
+      color: #777;
+      font-size: 9px;
       letter-spacing: 1px;
+      text-align: right;
     }
 
-    h3 {
-      margin: 11px 0;
-      font-size: 21px;
+    /* BOLT PROJECT ARTWORK */
+
+    .bolt-art {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(8px, 3vw, 35px);
+      padding: 25px;
+      background:
+        radial-gradient(ellipse at 50% 45%, #fff 0%, #f5f5f3 75%);
     }
 
-    .description {
-      min-height: 45px;
-      color: var(--gray);
-      font-size: 13px;
-      line-height: 1.7;
+    .bolt-art svg {
+      display: block;
+      width: 42%;
+      max-width: 190px;
+      height: auto;
+      overflow: visible;
     }
 
-    .meta {
-      padding-top: 14px;
-      margin-top: 16px;
-      border-top: 1px solid var(--line);
-      color: var(--gray);
-      font-size: 10px;
-      letter-spacing: .8px;
+    .bolt-art svg:last-child {
+      width: 32%;
+      max-width: 140px;
     }
+
+    /* ABOUT */
 
     .about {
-      padding: 65px 0;
-      background: var(--surface);
+      padding: 75px 0 90px;
+      background: var(--soft);
     }
 
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 55px;
+      gap: 70px;
     }
 
-    .about p {
+    .about-copy {
+      max-width: 460px;
+      margin: 20px 0 0;
       color: #666;
-      font-size: 15px;
-      line-height: 1.9;
+      font-size: 14px;
+      line-height: 1.95;
     }
 
-    .skill {
+    .capabilities { border-top: 1px solid #dededb; }
+
+    .capability {
       display: flex;
       justify-content: space-between;
       gap: 15px;
-      padding: 18px 0;
-      border-bottom: 1px solid #dddfe3;
-      font-size: 13px;
+      padding: 17px 0;
+      border-bottom: 1px solid #dededb;
+      font-size: 12px;
     }
 
-    .skill span { color: var(--gray); }
+    .capability span {
+      color: var(--muted);
+      text-align: right;
+    }
+
+    /* FOOTER */
 
     footer {
-      padding: 27px 0;
-      color: var(--gray);
-      font-size: 10px;
-      letter-spacing: 1px;
+      padding: 26px 0;
     }
 
     .footer-inner {
       display: flex;
       justify-content: space-between;
-      gap: 15px;
+      align-items: center;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 10px;
     }
 
-    @media (max-width: 650px) {
-      .container { width: calc(100% - 30px); }
-      header { height: 65px; }
-      .logo { font-size: 15px; }
-      nav { gap: 13px; font-size: 11px; }
-      .hero { padding: 65px 0 50px; }
-      h1 { letter-spacing: -2px; }
-      .grid, .about-grid { grid-template-columns: 1fr; }
-      .section-head {
+    .footer-name {
+      color: var(--text);
+      font-weight: 650;
+      letter-spacing: .5px;
+    }
+
+    .back-top:hover { color: var(--blue); }
+
+    /* ENTRANCE ANIMATION */
+
+    @media (prefers-reduced-motion: no-preference) {
+      .hero > * {
+        animation: appear .65s both;
+      }
+
+      .hero h1 { animation-delay: .07s; }
+      .hero .hero-bottom { animation-delay: .14s; }
+
+      @keyframes appear {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 700px) {
+      .wrap { width: calc(100% - 36px); }
+
+      .nav { height: 64px; }
+
+      .nav-links { gap: 15px; }
+
+      .nav-contact { display: none; }
+
+      .hero {
+        padding-top: 75px;
+        padding-bottom: 65px;
+      }
+
+      h1 {
+        font-size: clamp(50px, 12vw, 76px);
+        letter-spacing: -.07em;
+      }
+
+      .hero-bottom {
+        align-items: start;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .section { padding-bottom: 70px; }
+
+      .section-header {
         align-items: start;
         flex-direction: column;
       }
-      .footer-inner { flex-direction: column; }
+
+      .section-caption { text-align: left; }
+
+      .projects {
+        grid-template-columns: 1fr;
+        row-gap: 38px;
+      }
+
+      .project-media { aspect-ratio: 1.2 / 1; }
+
+      .about { padding: 55px 0; }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .wrap { width: calc(100% - 28px); }
+
+      .brand { font-size: 12px; }
+      .nav-links { gap: 12px; font-size: 11px; }
+
+      .project-info { flex-direction: column; }
+      .project-type { text-align: left; }
+
+      .footer-inner {
+        align-items: start;
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 
 <body>
-  <header class="container">
-    <a class="logo" href="#">FORMA<span>3D</span></a>
-    <nav>
-      <a href="#projects">Projects</a>
-      <a href="#about">About</a>
-    </nav>
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top">
+        MATTHEW
+        <span>Engineering & Design</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a class="nav-contact" href="#projects">Explore work ↘</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <section class="hero container">
-      <div class="eyebrow">Engineering Portfolio · 2026</div>
-      <div class="accent"></div>
+  <main id="top">
 
-      <h1>Ideas into <span>reality.</span></h1>
+    <!-- INTRODUCTION -->
 
-      <p class="intro">
-        Welcome to my engineering portfolio.
-        Explore my projects, mechanical designs and animations.
-        From digital concepts to real-world engineering.
-      </p>
+    <section class="hero wrap">
+      <div class="eyebrow">
+        <span class="status-dot"></span>
+        Independent projects · 2026
+      </div>
 
-      <div class="actions">
-        <a class="button primary" href="#projects">
-          Explore projects ↘
+      <h1>
+        Engineering<br>
+        <span>made tangible.</span>
+      </h1>
+
+      <div class="hero-bottom">
+        <p class="hero-description">
+          I design mechanical models, explore how things work
+          and turn digital ideas into physical objects.
+          This is a selection of my engineering projects.
+        </p>
+
+        <a class="primary-link" href="#projects">
+          Explore projects <span>↘</span>
         </a>
-        <a class="button" href="#about">About my work</a>
       </div>
     </section>
 
-    <section class="projects container" id="projects">
-      <div class="section-head">
+    <!-- PROJECTS -->
+
+    <section class="section wrap" id="projects">
+      <div class="section-header">
         <div>
-          <div class="eyebrow">Selected work</div>
-          <div class="accent"></div>
-          <h2>My Projects</h2>
+          <div class="section-index">01 / SELECTED WORK</div>
+          <h2>Projects</h2>
         </div>
-        <div class="note">CAD · Mechanical Design · 3D</div>
+
+        <div class="section-caption">
+          CAD design<br>
+          Mechanical systems · 3D printing
+        </div>
       </div>
 
-      <div class="grid">
+      <div class="projects">
 
-        <!-- PROJECT 1: JET TURBINE VIDEO -->
-        <article class="card">
-          <div class="media">
-            <span class="tag">PROJECT 01 / ANIMATION</span>
-            <video controls playsinline preload="metadata">
+        <!-- TURBINE -->
+
+        <article class="project">
+          <div class="project-media">
+            <span class="media-number">PROJECT 01</span>
+
+            <video
+              class="autoplay-video"
+              muted
+              loop
+              playsinline
+              webkit-playsinline
+              autoplay
+              preload="metadata"
+              aria-label="Jet turbine animation">
               <source src="./jet_turbine.mp4" type="video/mp4">
-              Your browser does not support video.
             </video>
+
+            <span class="media-state">TURBINE ANIMATION</span>
           </div>
-          <div class="card-body">
-            <div class="number">01 — MECHANICAL DESIGN</div>
-            <h3>Jet Turbine</h3>
-            <p class="description">
-              A jet turbine animation exploring mechanical
-              engineering and turbine design.
-            </p>
-            <div class="meta">ENGINEERING · ANIMATION</div>
+
+          <div class="project-info">
+            <div>
+              <h3 class="project-title">Jet Turbine</h3>
+              <p class="project-description">
+                A mechanical turbine animation exploring
+                engineering geometry and rotating components.
+              </p>
+            </div>
+
+            <div class="project-type">MECHANICAL<br>DESIGN</div>
           </div>
         </article>
 
-        <!-- PROJECT 2: ENGINE ASSEMBLY VIDEO -->
-        <article class="card">
-          <div class="media">
-            <span class="tag">PROJECT 02 / ANIMATION</span>
-            <video controls playsinline preload="metadata">
+        <!-- ENGINE -->
+
+        <article class="project">
+          <div class="project-media">
+            <span class="media-number">PROJECT 02</span>
+
+            <video
+              class="autoplay-video"
+              muted
+              loop
+              playsinline
+              webkit-playsinline
+              autoplay
+              preload="metadata"
+              aria-label="Engine assembly animation">
               <source
                 src="./%D0%A1%D0%B1%D0%BE%D1%80%D0%BA%D0%B0%20%D0%B4%D0%B2%D0%B8%D0%B3%D0%B0%D1%82%D0%B5%D0%BB%D1%8F%20%D0%B0%D0%BD%D0%B8%D0%BC%D0%B0%D1%86%D0%B8%D1%8F%20.mp4"
                 type="video/mp4">
-              Your browser does not support video.
             </video>
+
+            <span class="media-state">ASSEMBLY ANIMATION</span>
           </div>
-          <div class="card-body">
-            <div class="number">02 — ENGINEERING</div>
-            <h3>Engine Assembly</h3>
-            <p class="description">
-              An animated engine assembly demonstrating
-              mechanical components and their arrangement.
-            </p>
-            <div class="meta">MECHANICAL ASSEMBLY · CAD</div>
+
+          <div class="project-info">
+            <div>
+              <h3 class="project-title">Engine Assembly</h3>
+              <p class="project-description">
+                An animated engine assembly showing how
+                mechanical components fit together.
+              </p>
+            </div>
+
+            <div class="project-type">CAD<br>ASSEMBLY</div>
           </div>
         </article>
 
-        <!-- PROJECT 3: MERCEDES IMAGE -->
-        <article class="card">
-          <div class="media">
-            <span class="tag">PROJECT 03 / AUTOMOTIVE</span>
+        <!-- BOLTS AND NUTS -->
+
+        <article class="project">
+          <div class="project-media">
+            <span class="media-number">PROJECT 03</span>
+
+            <div class="bolt-art" role="img"
+              aria-label="Illustration of a bolt and a hexagonal nut">
+
+              <!-- Simplified vector illustration, not a photo of the print -->
+              <svg viewBox="0 0 180 220" aria-hidden="true">
+                <defs>
+                  <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#fdfdfd"/>
+                    <stop offset="45%" stop-color="#bfc3c8"/>
+                    <stop offset="100%" stop-color="#777d84"/>
+                  </linearGradient>
+                </defs>
+
+                <ellipse cx="90" cy="196" rx="49" ry="9"
+                  fill="#000" opacity=".07"/>
+
+                <path d="M64 52 L116 52 L116 73 L108 82
+                         L108 168 L72 168 L72 82 L64 73 Z"
+                  fill="url(#metal)" stroke="#62666b" stroke-width="1.5"/>
+
+                <path d="M72 85 L108 85 M72 96 L108 96
+                         M72 107 L108 107 M72 118 L108 118
+                         M72 129 L108 129 M72 140 L108 140
+                         M72 151 L108 151"
+                  fill="none" stroke="#747980" stroke-width="2"/>
+
+                <path d="M90 52 L90 168"
+                  stroke="#fff" stroke-width="2" opacity=".5"/>
+
+                <path d="M64 52 L72 44 L108 44 L116 52
+                         L116 73 L108 81 L72 81 L64 73 Z"
+                  fill="#dce0e4" stroke="#686d73" stroke-width="1.5"/>
+
+                <path d="M72 49 L108 49 L112 54 L112 70
+                         L106 76 L74 76 L68 70 L68 54 Z"
+                  fill="#f8f9fa" stroke="#a3a8ae" stroke-width="1.5"/>
+
+                <ellipse cx="90" cy="62" rx="12" ry="7"
+                  fill="#737980"/>
+
+                <ellipse cx="90" cy="62" rx="7" ry="4"
+                  fill="#f5f6f7"/>
+              </svg>
+
+              <svg viewBox="0 0 160 160" aria-hidden="true">
+                <defs>
+                  <linearGradient id="nutmetal" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#fafafa"/>
+                    <stop offset="48%" stop-color="#c5c9ce"/>
+                    <stop offset="100%" stop-color="#777d84"/>
+                  </linearGradient>
+                </defs>
+
+                <ellipse cx="80" cy="130" rx="53" ry="9"
+                  fill="#000" opacity=".07"/>
+
+                <polygon points="80,17 130,45 130,101 80,129 30,101 30,45"
+                  fill="url(#nutmetal)" stroke="#777d84" stroke-width="2"/>
+
+                <polygon points="80,31 117,51 117,94 80,115 43,94 43,51"
+                  fill="#e8ebee" stroke="#a5abb1" stroke-width="1.5"/>
+
+                <polygon points="80,43 105,57 105,88 80,102 55,88 55,57"
+                  fill="#8c9299" stroke="#666c73" stroke-width="1.5"/>
+
+                <polygon points="80,49 99,60 99,84 80,95 61,84 61,60"
+                  fill="#f4f5f6"/>
+
+                <path d="M80 17 L80 31 M130 45 L117 51
+                         M130 101 L117 94 M80 129 L80 115
+                         M30 101 L43 94 M30 45 L43 51"
+                  stroke="#fff" stroke-width="2" opacity=".7"/>
+              </svg>
+            </div>
+
+            <span class="media-state">DESIGNED & 3D PRINTED</span>
+          </div>
+
+          <div class="project-info">
+            <div>
+              <h3 class="project-title">Bolts & Nuts</h3>
+              <p class="project-description">
+                Designed in SOLIDWORKS and 3D printed by me.
+                A functional threaded model you can assemble by hand.
+              </p>
+            </div>
+
+            <div class="project-type">CAD<br>3D PRINTING</div>
+          </div>
+        </article>
+
+        <!-- MERCEDES IMAGE -->
+
+        <article class="project">
+          <div class="project-media photo">
+            <span class="media-number">PROJECT 04</span>
+
             <img
               src="./marsedes.JPG"
-              alt="Mercedes-Benz automotive project"
-              loading="lazy">
+              alt="Mercedes-Benz automotive reference"
+              loading="lazy"
+              decoding="async">
+
+            <span class="media-state">AUTOMOTIVE</span>
           </div>
-          <div class="card-body">
-            <div class="number">03 — AUTOMOTIVE</div>
-            <h3>Mercedes-Benz</h3>
-            <p class="description">
-              An automotive reference featured in my
-              engineering portfolio.
-            </p>
-            <div class="meta">AUTOMOTIVE · DESIGN</div>
+
+          <div class="project-info">
+            <div>
+              <h3 class="project-title">Mercedes-Benz</h3>
+              <p class="project-description">
+                An automotive design reference in my
+                collection of engineering interests.
+              </p>
+            </div>
+
+            <div class="project-type">AUTOMOTIVE<br>DESIGN</div>
           </div>
         </article>
 
       </div>
     </section>
 
+    <!-- ABOUT -->
+
     <section class="about" id="about">
-      <div class="container about-grid">
+      <div class="wrap about-grid">
         <div>
-          <div class="eyebrow">About me</div>
-          <div class="accent"></div>
-          <h2>Why Engineering?</h2>
-          <p>
-            I like technology and enjoy making things.
-            I enjoy designing 3D models, exploring mechanical
-            systems and turning ideas into real projects.
-            I want to keep learning and create useful things.
+          <div class="section-index">02 / ABOUT</div>
+          <h2>Made to understand<br>how things work.</h2>
+
+          <p class="about-copy">
+            I'm interested in engineering, mechanical design
+            and technology. I use SOLIDWORKS to create models,
+            experiment with ideas and turn digital designs
+            into physical objects through 3D printing.
           </p>
         </div>
 
-        <div>
-          <div class="skill">
-            <strong>SOLIDWORKS</strong>
-            <span>3D Modeling</span>
+        <div class="capabilities">
+          <div class="capability">
+            <strong>CAD Design</strong>
+            <span>SOLIDWORKS</span>
           </div>
-          <div class="skill">
-            <strong>3D Printing</strong>
-            <span>Digital to Physical</span>
+
+          <div class="capability">
+            <strong>Prototyping</strong>
+            <span>3D Printing</span>
           </div>
-          <div class="skill">
-            <strong>Engineering</strong>
-            <span>Mechanical Design</span>
+
+          <div class="capability">
+            <strong>Mechanical Systems</strong>
+            <span>Parts & assemblies</span>
           </div>
-          <div class="skill">
+
+          <div class="capability">
             <strong>Programming</strong>
             <span>C++ · Python</span>
           </div>
         </div>
       </div>
     </section>
+
   </main>
 
   <footer>
-    <div class="container footer-inner">
-      <span>FORMA3D — ENGINEERING PORTFOLIO</span>
-      <span>DESIGNED WITH CURIOSITY · 2026</span>
+    <div class="wrap footer-inner">
+      <span class="footer-name">MATTHEW / ENGINEERING</span>
+      <span>DESIGNED & BUILT WITH CURIOSITY</span>
+      <a class="back-top" href="#top">Back to top ↑</a>
     </div>
   </footer>
+
+  <script>
+    // Play videos only when their project is visible.
+    // Pause videos when they scroll out of view.
+    // Muted playback allows autoplay in most modern browsers.
+
+    const videos = document.querySelectorAll(".autoplay-video");
+
+    const playVideo = (video) => {
+      const promise = video.play();
+
+      if (promise && typeof promise.catch === "function") {
+        promise.catch(() => {
+          // Autoplay can be blocked by browser settings.
+          // Native controls remain available if needed.
+        });
+      }
+    };
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target;
+
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
+            playVideo(video);
+          } else {
+            video.pause();
+          }
+        });
+      }, {
+        threshold: [0, 0.35, 0.6]
+      });
+
+      videos.forEach((video) => observer.observe(video));
+    } else {
+      videos.forEach(playVideo);
+    }
+
+    // Attempt playback once after page load.
+    // IntersectionObserver will pause videos outside the viewport.
+    window.addEventListener("load", () => {
+      videos.forEach((video) => {
+        if (video.getBoundingClientRect().top < window.innerHeight) {
+          playVideo(video);
+        }
+      });
+    });
+  </script>
+
 </body>
 </html>
